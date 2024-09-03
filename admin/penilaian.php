@@ -142,7 +142,7 @@ if (!isset($_POST['id_alternatif'])) {
               <font size="4"><b style = "color:#000;">Data Calon</b></font>
             </a>
             <a class="nav-link" href="#">
-            <font size="4"><b style = "color:#000;"><button type="submit" name="Penilaian" class="btn" style="font-size: 18px; margin-top: -6px; padding: 0px 3px 0px 3px;"><b>Penilaian</b></button></b></font>
+            <font size="4"><b style = "color:#000;"><button type="submit" name="Penilaian" class="btn" style="font-size: 18px; padding: 0px 3px 0px 3px;"><b>Penilaian</b></button></b></font>
           </a>
             <a class="nav-link" href="laporan.php">
               <font size="4"><b style = "color:#000;">laporan</b></font>
