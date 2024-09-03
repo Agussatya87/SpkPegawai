@@ -106,7 +106,7 @@ $data = query("SELECT * FROM hasil_akhir ORDER BY kode DESC");
         <div class="navbar-nav ms-auto" style="margin: 10px;">
           <a class="log nav-link m-auto" href="../logout.php">
             <font size="4"><b style = "color:#000;">Logout</b></font>
-            <img src="../img/logout.png" width="30">
+            <img src="../img/logout_new.png" width="20">
           </a>
         </div>
       </div>
@@ -117,7 +117,7 @@ $data = query("SELECT * FROM hasil_akhir ORDER BY kode DESC");
   <div class="container bg-light shadow p-3 mb-5">
 
     <div class="alert alert-info">
-      <center><b>laporan SEPATU SPORT TERBAIK</b></center>
+      <center><b>Laporan Calon Staff terbaik</b></center>
     </div>
 
     <div class="table-responsive p-4">

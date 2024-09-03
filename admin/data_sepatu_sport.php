@@ -110,7 +110,7 @@ if (isset($_POST['cari'])) {
         <div class="navbar-nav ms-auto" style="margin: 10px;">
           <a class="log nav-link m-auto" href="../logout.php">
             <font size="4"><b style = "color:#000;">Logout</b></font>
-            <img src="../img/logout.png" width="30">
+            <img src="../img/logout_new.png" width="20">
           </a>
         </div>
     </nav>
