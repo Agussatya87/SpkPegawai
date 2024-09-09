@@ -10,19 +10,18 @@ if (!isset($_SESSION['status'])) {
 
 require '../functions.php';
 
-//AMBIL DATA YG DIKLIK EDIT DI HALAMAN data_sepatu_sport.php TADI 
-$id_alternatif = $_GET['id_alternatif'];
+//AMBIL DATA YG DIKLIK EDIT DI HALAMAN data_calon_staff.php TADI 
+$id_calon = $_GET['id_calon'];
 
 //TAMPILKAN DATA DIMANA id_alternatif nya ADALAH $id_alternatif
-$data_sepatu = tampilsepatu("SELECT * FROM alternatif WHERE id_alternatif = '$id_alternatif' ")[0];
+$data_sepatu = tampilsepatu("SELECT * FROM calon_staff WHERE id_calon = '$id_calon' ")[0];
 
 //JIKA DIKLIK BUTTON EDIT MAKA
 if (isset($_POST['edit'])) {
-  //JIKA function edit_sepatu > 0 (sukses) MAKA JALANKAN FUNGSI
   if (edit_sepatu($_POST) > 0) {
     echo "<script>
           alert ('Data Berhasil Di Edit')
-          document.location.href='data_sepatu_sport.php'
+          document.location.href='data_calon_staff.php'
           </script>";
   }
 }
@@ -50,61 +49,62 @@ if (isset($_POST['edit'])) {
       min-height: calc(100vh - 211px - -60px);
     }
 
-
-
     .col-md-12 {
       padding: 8px;
     }
 
     .copyright {
       text-align: center;
-      color: #CDD0D4
     }
 
-    a font {
-      color: whitesmoke;
+    .navbar-nav a {
+      margin-right: 20px;
     }
 
     .navbar-nav a:hover {
-      color: darkblue;
-
+    color: darkblue;
+    background-color: lightblue; 
+    border-radius: 5px; 
     }
   </style>
 
-  <title>EDIT DATA SEPATU</title>
+  <title>EDIT DATA Calon</title>
 </head>
 
 <body bgcolor="f0f0f0">
-  <form method="post" action="Penilaian.php">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-light">
-      <a class="navbar-brand" href="#"><img src="../img/gmd.png" width="50"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav" style="margin: 10px;">
-          <a class="nav-link active" href="index.php">
-            <font size="4"><b>Home</b> </font><span class="sr-only">(current)</span>
-          </a>
-          <a class="nav-link" href="data_kriteria.php">
-            <font size="4"><b>Kriteria</b></font>
-          </a>
-          <a class="nav-link" href="data_sepatu_sport.php">
-            <font size="4"><b>Data Calon</b></font>
-          </a>
-          <a class="nav-link" href="#">
-            <font size="4"><b><button type="submit" name="Penilaian" class="btn btn-light" style="font-size: 20px; margin-top: -10px;"><b>Penilaian</b></button></b></font>
-          </a>
-          <a class="nav-link" href="laporan.php">
-            <font size="4"><b>laporan</b></font>
-          </a>
-        </div>
-
-        <div class="navbar-nav ms-auto" style="margin: 10px;">
-          <a class="log nav-link m-auto" href="../logout.php">
-            <font size="4"><b>Logout</b></font>
-            <img src="../img/logout.png" width="30">
-          </a>
+  <form method="post" action="perhitungan.php">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="../img/logo.png" width="50"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="navbar-nav" style="margin: 10px;">
+            <a class="nav-link active" href="index.php">
+              <font size="4"><b style="color:#000;">Home</b></font><span class="sr-only">(current)</span>
+            </a>
+            <a class="nav-link" href="data_kriteria.php">
+              <font size="4"><b style="color:#000;">Kriteria</b></font>
+            </a>
+            <a class="nav-link" href="data_calon_staff.php">
+              <font size="4"><b style="color:#000;">Data Calon</b></font>
+            </a>
+            <a class="nav-link" href="#">
+              <font size="4"><b style="color:#000;">
+                <button type="submit" name="perhitungan" class="btn" style="font-size: 18px; padding: 0px 3px 0px 0px;"><b>Penilaian</b></button>
+              </b></font>
+            </a>
+            <a class="nav-link" href="laporan.php">
+              <font size="4"><b style="color:#000;">Hasil Penilaian</b></font
+            </a>
+          </div>
+          <div class="navbar-nav ms-auto" style="margin: 10px;">
+            <a class="log nav-link m-auto" href="../logout.php">
+              <font size="4"><b style="color:#000;">Logout</b></font>
+              <img src="../img/logout_new.png" width="20">
+            </a>
+          </div>
         </div>
       </div>
     </nav>
@@ -121,46 +121,52 @@ if (isset($_POST['edit'])) {
         <table class="table">
 
           <tr>
-            <td width="200"><label>Id Kriteria</label></td>
+            <td width="200"><label>Id Calon Staff</label></td>
             <td> : </td>
-            <td width="500"><input type="text" name="id_alternatif" value="<?= $data_sepatu['id_alternatif']; ?>" readonly class="form-control" autocomplete="off"></td>
+            <td width="500"><input type="text" name="id_calon" value="<?= $data_sepatu['id_calon']; ?>" readonly class="form-control" autocomplete="off"></td>
           </tr>
 
           <tr>
-            <td><label>Nama Kriteria</label></td>
+            <td><label>Nama Calon Staff</label></td>
             <td> : </td>
-            <td width="500"> <input type="text" name="nama_alternatif" value="<?= $data_sepatu['nama_alternatif']; ?>" class="form-control" autocomplete="off"></td>
+            <td width="500"> <input type="text" name="nama_calon" value="<?= $data_sepatu['nama_calon']; ?>" class="form-control" autocomplete="off"></td>
           </tr>
 
           <tr>
-            <td><label>Merek (C1)</label></td>
+            <td><label>Nilai Psikotes (C1)</label></td>
             <td> : </td>
             <td width="500"> <input type="text" name="c1" value="<?= $data_sepatu['c1']; ?>" class="form-control" autocomplete="off"></td>
           </tr>
 
           <tr>
-            <td><label>Bahan (C2)</label></td>
+            <td><label>Verifikasi Ijazah (C2)</label></td>
             <td> : </td>
             <td width="500"> <input type="text" name="c2" value="<?= $data_sepatu['c2']; ?>" class="form-control" autocomplete="off"></td>
           </tr>
 
           <tr>
-            <td><label>Berat (C3)</label></td>
+            <td><label>Interview (C3)</label></td>
             <td> : </td>
             <td width="500"> <input type="text" name="c3" value="<?= $data_sepatu['c3']; ?>" class="form-control" autocomplete="off"></td>
           </tr>
 
           <tr>
-            <td><label>Harga (C4)</label></td>
+            <td><label>Pengalaman (C4)</label></td>
             <td> : </td>
             <td width="500"> <input type="text" name="c4" value="<?= $data_sepatu['c4']; ?>" class="form-control" autocomplete="off"></td>
+          </tr>
+
+          <tr>
+            <td><label>Keahlian (C5)</label></td>
+            <td> : </td>
+            <td width="500"> <input type="text" name="c5" value="<?= $data_sepatu['c5']; ?>" class="form-control" autocomplete="off"></td>
           </tr>
 
 
           <td></td>
           <td></td>
           <td><button type="submit" name="edit" class="btn btn-warning">Edit </button> &nbsp;&nbsp;&nbsp;
-            <a href="data_sepatu_sport.php" class="btn btn-danger">Batal</a>
+            <a href="data_calon_staff.php" class="btn btn-danger">Batal</a>
           </td>
           </tr>
         </table>
@@ -173,9 +179,10 @@ if (isset($_POST['edit'])) {
 
   <div class="col-md-12 bg-light">
     <div class="copyright">
-      <h6>Copyright&copy; Kasep-Code 2023</h6>777
+      <h6 style = "color:#000;">Copyright&copy; Fanny Khaliza</h6>
     </div>
   </div>
+
 
 
   <!-- 

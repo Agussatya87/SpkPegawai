@@ -67,38 +67,39 @@ $data_kriteria = tampilkriteria("SELECT * FROM kriteria");
 </head>
 
 <body bgcolor="f0f0f0">
-  <form method="post" action="Penilaian.php">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-light">
-      <a class="navbar-brand" href="#"><img src="../img/logo.png" width="50"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav" style="margin: 10px;">
-          <a class="nav-link active" href="index.php">
-            <font size="4"><b style = "color:#000;">Home</b> </font><span class="sr-only">(current)</span>
-          </a>
-          <a class="nav-link" href="data_kriteria.php">
-            <font size="4"><b style = "color:#000;">Kriteria</b></font>
-          </a>
-          <a class="nav-link" href="data_sepatu_sport.php">
-            <font size="4"><b style = "color:#000;">Data Calon</b></font>
-          </a>
-          <a class="nav-link" href="#">
-            <font size="4"><b style = "color:#000;"><button type="submit" name="Penilaian" class="btn" style="font-size: 18px; padding: 0px 3px 0px 3px;"><b>Penilaian</b></button></b></font>
-          </a>
-          <a class="nav-link" href="laporan.php">
-            <font size="4"><b style = "color:#000;">laporan</b></font>
-          </a>
+  <form method="post" action="perhitungan.php">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="../img/logo.png" width="50"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav" style="margin: 10px;">
+            <a class="nav-link active" href="index.php">
+              <font size="4"><b style = "color:#000;">Home</b> </font><span class="sr-only">(current)</span>
+            </a>
+            <a class="nav-link" href="data_kriteria.php">
+              <font size="4"><b style = "color:#000;">Kriteria</b></font>
+            </a>
+            <a class="nav-link" href="data_calon_staff.php">
+              <font size="4"><b style = "color:#000;">Data Calon</b></font>
+            </a>
+            <a class="nav-link" href="#">
+              <font size="4"><b style = "color:#000;"><button type="submit" name="perhitungan" class="btn" style="font-size: 18px; padding: 0px 3px 0px 0px;"><b>Penilaian</b></button></b></font>
+            </a>
+            <a class="nav-link" href="laporan.php">
+              <font size="4"><b style = "color:#000;">Hasil Penilaian</b></font>
+            </a>
+          </div>
+          
+          <div class="navbar-nav ms-auto" style="margin: 10px;">
+            <a class="log nav-link m-auto" href="../logout.php">
+              <font size="4"><b style = "color:#000;">Logout</b></font>
+              <img src="../img/logout_new.png" width="20">
+            </a>
+          </div>   
         </div>
-
-        <div class="navbar-nav ms-auto" style="margin: 10px;">
-          <a class="log nav-link m-auto" href="../logout.php">
-            <font size="4"><b style = "color:#000;">Logout</b></font>
-            <img src="../img/logout_new.png" width="20">
-          </a>
-        </div>
-
       </div>
     </nav>
   </form>

@@ -2,13 +2,13 @@
 
 require '../functions.php';
 
-//AMBIL DATA YG DIKLIK HAPUS DI HALAMAN data_sepatu_sport.php TADI 
-$id_alternatif = $_GET['id_alternatif'];
+//AMBIL DATA YG DIKLIK HAPUS DI HALAMAN data_calon_staff.php TADI 
+$id_calon = $_GET['id_calon'];
 
 //JALANKAN FUNGSI HAPUS
-if (hapus_sepatu($id_alternatif)) {
+if (hapus_sepatu($id_calon)) {
     echo "<script>
           alert ('Data Berhasil Di Hapus')
-          document.location.href='data_sepatu_sport.php'
+          document.location.href='data_calon_staff.php'
           </script>";
 }

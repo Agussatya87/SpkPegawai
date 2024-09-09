@@ -70,7 +70,7 @@ $data = query("SELECT * FROM nilai WHERE kode_hasil = '$kode' ORDER BY total DES
 </head>
 
 <body bgcolor="f0f0f0">
-  <form method="post" action="Penilaian.php">
+  <form method="post" action="perhitungan.php">
     <nav class="navbar navbar-expand-lg navbar-dark bg-light">
       <a class="navbar-brand" href="#"><img src="../img/gmd.png" width="50"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,7 +81,7 @@ $data = query("SELECT * FROM nilai WHERE kode_hasil = '$kode' ORDER BY total DES
           <a class="nav-link active" href="index.php">
             <font size="4"><b>Home</b> </font><span class="sr-only">(current)</span>
           </a>
-          <a class="nav-link" href="data_sepatu_sport.php">
+          <a class="nav-link" href="data_calon_staff.php">
             <font size="4"><b>Data Calon</b></font>
           </a>
           <a class="nav-link" href="laporan.php">

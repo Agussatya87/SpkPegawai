@@ -81,7 +81,7 @@ if (isset($_POST['login'])) {
   <center>
     <br><br><br><br><br>
 
-    <div class="col-md-3" style="padding: 10px; ">
+    <div class="col-md-3" style="padding: 10px;">
       <?php
       if (isset($_GET['pesan'])) {
 

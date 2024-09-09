@@ -116,7 +116,7 @@ require '../functions.php';
         <a class="nav-link active" href="index.php">
           <font size="4"><b>Home</b> </font><span class="sr-only">(current)</span>
         </a>
-        <a class="nav-link" href="data_sepatu_sport.php">
+        <a class="nav-link" href="data_calon_staff.php">
           <font size="4"><b>Data Calon</b></font>
         </a>
         <a class="nav-link" href="laporan.php">

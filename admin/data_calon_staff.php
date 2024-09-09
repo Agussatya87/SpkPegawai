@@ -9,16 +9,16 @@ if (!isset($_SESSION['status'])) {
 require '../functions.php';
 
 //MEMBUKA SEMUA DATA YG ADA DI TABLE ALTERNATIF
-$data_sepatu = tampilsepatu("SELECT * FROM alternatif");
+$data_sepatu = tampilsepatu("SELECT * FROM calon_staff");
 
 //MEMBUKU KEMBALI UNTUK MEMBACA TOTAL DATA YANG ADA
-$data_sepatu1 = mysqli_query($con, "SELECT * FROM alternatif");
+$data_sepatu1 = mysqli_query($con, "SELECT * FROM calon_staff");
 
 //JIKA DI KLIK BUTTON CARI MAKA
 if (isset($_POST['cari'])) {
   $input = $_POST['input'];
   //TAMPILKAN DATA YANG DI INPUTKAN 
-  $data_sepatu = tampilsepatu("SELECT * FROM alternatif WHERE nama_alternatif LIKE '%$input%' OR id_alternatif LIKE '%$input%' ");
+  $data_sepatu = tampilsepatu("SELECT * FROM calon_staff WHERE nama_calon LIKE '%$input%' OR id_calon LIKE '%$input%' ");
 }
 
 
@@ -82,36 +82,38 @@ if (isset($_POST['cari'])) {
 </head>
 
 <body bgcolor="f0f0f0">
-  <form method="post" action="Penilaian.php">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-light">
-      <a class="navbar-brand" href="#"><img src="../img/logo.png" width="50"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav" style="margin: 10px;">
-          <a class="nav-link active" href="index.php">
-            <font size="4"><b style = "color:#000;">Home</b> </font><span class="sr-only">(current)</span>
-          </a>
-          <a class="nav-link" href="data_kriteria.php">
-            <font size="4"><b style = "color:#000;">Kriteria</b></font>
-          </a>
-          <a class="nav-link" href="data_sepatu_sport.php">
-            <font size="4"><b style = "color:#000;">Data Calon</b></font>
-          </a>
-          <a class="nav-link" href="#">
-            <font size="4"><b style = "color:#000;"><button type="submit" name="Penilaian" class="btn" style="font-size: 18px; padding: 0px 3px 0px 3px;"><b>Penilaian</b></button></b></font>
-          </a>
-          <a class="nav-link" href="laporan.php">
-            <font size="4"><b style = "color:#000;">laporan</b></font>
-          </a>
-        </div>
-
-        <div class="navbar-nav ms-auto" style="margin: 10px;">
-          <a class="log nav-link m-auto" href="../logout.php">
-            <font size="4"><b style = "color:#000;">Logout</b></font>
-            <img src="../img/logout_new.png" width="20">
-          </a>
+  <form method="post" action="perhitungan.php">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="../img/logo.png" width="50"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav" style="margin: 10px;">
+            <a class="nav-link active" href="index.php">
+              <font size="4"><b style = "color:#000;">Home</b> </font><span class="sr-only">(current)</span>
+            </a>
+            <a class="nav-link" href="data_kriteria.php">
+              <font size="4"><b style = "color:#000;">Kriteria</b></font>
+            </a>
+            <a class="nav-link" href="data_calon_staff.php">
+              <font size="4"><b style = "color:#000;">Data Calon</b></font>
+            </a>
+            <a class="nav-link" href="#">
+              <font size="4"><b style = "color:#000;"><button type="submit" name="perhitungan" class="btn" style="font-size: 18px; padding: 0px 3px 0px 0px;"><b>Penilaian</b></button></b></font>
+            </a>
+            <a class="nav-link" href="laporan.php">
+              <font size="4"><b style = "color:#000;">Hasil Penilaian</b></font>
+            </a>
+          </div>
+          
+          <div class="navbar-nav ms-auto" style="margin: 10px;">
+            <a class="log nav-link m-auto" href="../logout.php">
+              <font size="4"><b style = "color:#000;">Logout</b></font>
+              <img src="../img/logout_new.png" width="20">
+            </a>
+          </div>
         </div>
     </nav>
 
@@ -134,7 +136,7 @@ if (isset($_POST['cari'])) {
   <a href="tambah_data_sepatu.php" class="btn btn-success">Tambah Data</a>
   <br><br>
   <div class="hitung">
-    <button type="submit" name="Penilaian" class="btn btn-light" style=" margin-top: -10px;"><b>hitung</b></button>
+    <button type="submit" name="perhitungan" class="btn btn-light" style=" margin-top: -10px;"><b>hitung</b></button>
   </div>
 
   <script>
@@ -165,25 +167,27 @@ if (isset($_POST['cari'])) {
         <th>Pilih <br> (semua) <br>
           <input type="checkbox" onChange="checkAll(this)" name="chk[]">
         </th>
-        <th>Id Alternatif</th>
-        <th>Nama Alternatif</th>
-        <th>Merek (C1)</th>
-        <th>Bahan (C2)</th>
-        <th>Berat (C3)</th>
-        <th>Harga (C4)</th>
+        <th>Id Calon Staff</th>
+        <th>Nama Calon Staff</th>
+        <th>Nilai Psikotes (C1)</th>
+        <th>Verifikasi Ijazah (C2)</th>
+        <th>Interview (C3)</th>
+        <th>Pengalaman (C4)</th>
+        <th>Keahlian (C5)</th>
         <th>Aksi</th>
       </tr>
 
       <?php foreach ($data_sepatu as $sepatu) { ?>
         <tr>
-          <td><input type="checkbox" name="id_alternatif[]" id="pilih" value="<?= $sepatu['id_alternatif']; ?>"></td>
-          <td><?= $sepatu['id_alternatif']; ?></td>
-          <td><?= $sepatu['nama_alternatif']; ?></td>
+          <td><input type="checkbox" name="id_calon[]" id="pilih" value="<?= $sepatu['id_calon']; ?>"></td>
+          <td><?= $sepatu['id_calon']; ?></td>
+          <td><?= $sepatu['nama_calon']; ?></td>
           <td><?= $sepatu['c1']; ?></td>
           <td><?= $sepatu['c2']; ?></td>
           <td><?= $sepatu['c3']; ?></td>
           <td><?= $sepatu['c4']; ?></td>
-          <td><a href="edit_data_sepatu.php?id_alternatif=<?= $sepatu['id_alternatif']; ?>" class="btn btn-warning">Edit</a> <a href="hapus_data_sepatu.php?id_alternatif=<?= $sepatu['id_alternatif']; ?>" class="btn btn-danger">Delete</a></td>
+          <td><?= $sepatu['c5']; ?></td>
+          <td><a href="edit_data_sepatu.php?id_calon=<?= $sepatu['id_calon']; ?>" class="btn btn-warning">Edit</a> <a href="hapus_data_sepatu.php?id_calon=<?= $sepatu['id_calon']; ?>" class="btn btn-danger">Delete</a></td>
         </tr>
 
       <?php } ?>
