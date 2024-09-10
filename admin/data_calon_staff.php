@@ -9,16 +9,16 @@ if (!isset($_SESSION['status'])) {
 require '../functions.php';
 
 //MEMBUKA SEMUA DATA YG ADA DI TABLE ALTERNATIF
-$data_sepatu = tampilcalon("SELECT * FROM calon_staff");
+$data_calon = tampilcalon("SELECT * FROM calon_staff");
 
 //MEMBUKU KEMBALI UNTUK MEMBACA TOTAL DATA YANG ADA
-$data_sepatu1 = mysqli_query($con, "SELECT * FROM calon_staff");
+$data_calon1 = mysqli_query($con, "SELECT * FROM calon_staff");
 
 //JIKA DI KLIK BUTTON CARI MAKA
 if (isset($_POST['cari'])) {
   $input = $_POST['input'];
   //TAMPILKAN DATA YANG DI INPUTKAN 
-  $data_sepatu = tampilcalon("SELECT * FROM calon_staff WHERE nama_calon LIKE '%$input%' OR id_calon LIKE '%$input%' ");
+  $data_calon = tampilcalon("SELECT * FROM calon_staff WHERE nama_calon LIKE '%$input%' OR id_calon LIKE '%$input%' ");
 }
 
 
@@ -160,7 +160,7 @@ if (isset($_POST['cari'])) {
 
   <div class="table-responsive p-4">
     <table class="table table-striped shadow p-3 mb-5">
-      <?php $tot = mysqli_num_rows($data_sepatu1);
+      <?php $tot = mysqli_num_rows($data_calon1);
       echo "Total Data : <b>" . $tot . "</b>";
       ?>
       <tr class="bg-info">
@@ -177,17 +177,17 @@ if (isset($_POST['cari'])) {
         <th>Aksi</th>
       </tr>
 
-      <?php foreach ($data_sepatu as $sepatu) { ?>
+      <?php foreach ($data_calon as $calon) { ?>
         <tr>
-          <td><input type="checkbox" name="id_calon[]" id="pilih" value="<?= $sepatu['id_calon']; ?>"></td>
-          <td><?= $sepatu['id_calon']; ?></td>
-          <td><?= $sepatu['nama_calon']; ?></td>
-          <td><?= $sepatu['c1']; ?></td>
-          <td><?= $sepatu['c2']; ?></td>
-          <td><?= $sepatu['c3']; ?></td>
-          <td><?= $sepatu['c4']; ?></td>
-          <td><?= $sepatu['c5']; ?></td>
-          <td><a href="edit_data_sepatu.php?id_calon=<?= $sepatu['id_calon']; ?>" class="btn btn-warning">Edit</a> <a href="hapus_data_sepatu.php?id_calon=<?= $sepatu['id_calon']; ?>" class="btn btn-danger">Delete</a></td>
+          <td><input type="checkbox" name="id_calon[]" id="pilih" value="<?= $calon['id_calon']; ?>"></td>
+          <td><?= $calon['id_calon']; ?></td>
+          <td><?= $calon['nama_calon']; ?></td>
+          <td><?= $calon['c1']; ?></td>
+          <td><?= $calon['c2']; ?></td>
+          <td><?= $calon['c3']; ?></td>
+          <td><?= $calon['c4']; ?></td>
+          <td><?= $calon['c5']; ?></td>
+          <td><a href="edit_data_calon.php?id_calon=<?= $calon['id_calon']; ?>" class="btn btn-warning">Edit</a> <a href="hapus_data_calon.php?id_calon=<?= $calon['id_calon']; ?>" class="btn btn-danger">Delete</a></td>
         </tr>
 
       <?php } ?>
