@@ -42,16 +42,22 @@ $data = query("SELECT * FROM hasil_akhir ORDER BY kode DESC");
 
     .copyright {
       text-align: center;
-      color: white;
+      color: #000;
 
     }
 
+    .navbar-nav a {
+      margin-right: 20px;
+    }
+
     a font {
-      color: whitesmoke;
+      color: #000;
     }
 
     .navbar-nav a:hover {
       color: darkblue;
+      background-color: lightblue; 
+      border-radius: 5px;
     }
 
     h6 {
@@ -80,40 +86,26 @@ $data = query("SELECT * FROM hasil_akhir ORDER BY kode DESC");
 <body bgcolor="f0f0f0">
   <form method="post" action="perhitungan.php">
     <nav class="navbar navbar-expand-lg navbar-dark bg-light">
-      <a class="navbar-brand" href="#"><img src="../img/gmd.png" width="50"></a>
+      <a class="navbar-brand" href="#"><img src="../img/logo.png" width="50"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav" style="margin: 10px;">
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
           <a class="nav-link active" href="index.php">
-            <font size="4"><b>Home</b> </font><span class="sr-only">(current)</span>
+            <font size="4"><b>Home</b></font><span class="sr-only">(current)</span>
           </a>
           <a class="nav-link" href="data_calon_staff.php">
             <font size="4"><b>Data Calon</b></font>
           </a>
           <a class="nav-link" href="laporan.php">
-            <font size="4"><b>laporan</b></font>
-          </a>
-          <a class="nav-link" href="tentang.php">
-            <font size="4"><b>Tentang</b></font>
-          </a>
-          <!-- membuat tobol logout menjadi lebih ke kanan dan bisa menyesuaikan di mobile juga. 1&nbsp = 1x spasi -->
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a class="log nav-link" href="../logout.php">
-            <font size="4"><b>Logout</b></font>
-            <img src="../img/logout.png" width="30">
+            <font size="4"><b>Laporan</b></font>
           </a>
         </div>
+        <a class="nav-link log" href="../logout.php">
+          <font size="4"><b>Logout</b></font>
+          <img src="../img/logout_new.png" width="30">
+        </a>
       </div>
     </nav>
   </form>
@@ -122,7 +114,7 @@ $data = query("SELECT * FROM hasil_akhir ORDER BY kode DESC");
   <div class="container bg-light shadow p-3 mb-5">
 
     <div class="alert alert-info">
-      <center><b>laporan SEPATU SPORT TERBAIK</b></center>
+      <center><b>LAPORAN CALON STAFF TERBAIK</b></center>
     </div>
 
     <div class="table-responsive">
@@ -153,7 +145,7 @@ $data = query("SELECT * FROM hasil_akhir ORDER BY kode DESC");
             <td><?= $totaldata['TOTAL']; ?></td>
             <td>
               <a href="detail_laporan.php?kode=<?= $hasil_akhir['kode']; ?>" class="btn btn-info">Lihat</a>
-              <a href="hapus_laporan.php?kode=<?= $hasil_akhir['kode']; ?>" class="btn btn-danger">Hapus</a>
+              <a href="print_laporan.php?kode=<?= $hasil_akhir['kode']; ?>" class="btn btn-success">Print</a>
             </td>
           </tr>
 

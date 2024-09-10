@@ -11,30 +11,34 @@ require '../functions.php';
 
 
 // JIKA TIDAK MENERIMA DATA ID ALTERNATIF MAKA LEMPAR KEMBALI KE data_calon_staff.php
-if (!isset($_POST['id_alternatif'])) {
+if (!isset($_POST['id_calon'])) {
   echo "<script>
-  alert('Pilih Data Sepatu Dahulu ! ')
+  alert('Pilih Data Calon Staff Dahulu ! ')
   document.location.href='data_calon_staff.php'
   </script>";
 } else {
 
   //JIKA MENERIMA DATA ID ALTERNATIF MAKA JALANKAN HALAMAN perhitungan.php
 
-  //BUKA TABLE KRITERIA DAN TAMPILKAN FIELD MEREK
-  $datakriteriamerek = mysqli_query($con, "SELECT * FROM kriteria WHERE kriteria = 'merek'");
-  $merek = mysqli_fetch_assoc($datakriteriamerek);
+  //BUKA TABLE KRITERIA DAN TAMPILKAN FIELD PSIKOTES
+  $datakriteriPsikotes = mysqli_query($con, "SELECT * FROM kriteria WHERE kriteria = 'Nilai Psikotes'");
+  $psikotes = mysqli_fetch_assoc($datakriteriPsikotes);
 
-  //BUKA TABLE KRITERIA DAN TAMPILKAN FIELD BAHAN
-  $datakriteriabahan = mysqli_query($con, "SELECT * FROM kriteria WHERE kriteria = 'bahan'");
-  $bahan = mysqli_fetch_assoc($datakriteriabahan);
+  //BUKA TABLE KRITERIA DAN TAMPILKAN FIELD VERIFIKASI Ijasah
+  $datakriteriaIjazah = mysqli_query($con, "SELECT * FROM kriteria WHERE kriteria = 'Verifikasi Ijazah'");
+  $ijazah = mysqli_fetch_assoc($datakriteriaIjazah);
 
-  //BUKA TABLE KRITERIA DAN TAMPILKAN FIELD BERAT
-  $datakriteriaberat = mysqli_query($con, "SELECT * FROM kriteria WHERE kriteria = 'berat'");
-  $berat = mysqli_fetch_assoc($datakriteriaberat);
+  //BUKA TABLE KRITERIA DAN TAMPILKAN FIELD INTERVIEW
+  $datakriteriaInterview = mysqli_query($con, "SELECT * FROM kriteria WHERE kriteria = 'Interview'");
+  $interview = mysqli_fetch_assoc($datakriteriaInterview);
 
-  //BUKA TABLE KRITERIA DAN TAMPILKAN FIELD HARGA
-  $datakriteriaharga = mysqli_query($con, "SELECT * FROM kriteria WHERE kriteria = 'harga'");
-  $harga = mysqli_fetch_assoc($datakriteriaharga);
+  //BUKA TABLE KRITERIA DAN TAMPILKAN FIELD PENGALAMAN
+  $datakriteriaPengalaman = mysqli_query($con, "SELECT * FROM kriteria WHERE kriteria = 'Pengalaman'");
+  $pengalaman = mysqli_fetch_assoc($datakriteriaPengalaman);  
+
+  //BUKA TABLE KRITERIA DAN TAMPILKAN FIELD KEAHLIAN
+  $datakriteriaKeahlian = mysqli_query($con, "SELECT * FROM kriteria WHERE kriteria = 'Keahlian'");
+  $keahlian = mysqli_fetch_assoc($datakriteriaKeahlian);    
 
   //MEMBUAT KODE OTOMATIS
 
@@ -120,7 +124,7 @@ if (!isset($_POST['id_alternatif'])) {
       }
     </style>
 
-    <title>perhitungan</title>
+    <title>Perhitungan</title>
   </head>
 
   <body bgcolor="f0f0f0">
@@ -171,30 +175,32 @@ if (!isset($_POST['id_alternatif'])) {
       <div class="table-responsive p-4">
         <table class="table table-striped shadow">
           <tr class="bg-info">
-            <th width="150">Id Alternatif</th>
-            <th>Nama Alternatif</th>
-            <th>Merek (C1)</th>
-            <th>Bahan (C2)</th>
-            <th>Berat (C3)</th>
-            <th>Harga (C4)</th>
+            <th width="150">Id Calon</th>
+            <th>Nama Calon</th>
+            <th>Nilai Psikotes</th>
+            <th>Verifikasi ijazah</th>
+            <th>Interview</th>
+            <th>Pengalaman</th>
+            <th>Keahlian</th>
           </tr>
 
           <?php
-          $id_alternatifs = $_POST['id_alternatif'];
+          $id_calons = $_POST['id_calon'];
 
-          foreach ($id_alternatifs as $id_alternatif) {
-            $data = mysqli_query($con, "SELECT * FROM alternatif WHERE id_alternatif = '$id_alternatif' ");
-            while ($sepatu = mysqli_fetch_assoc($data)) {
+          foreach ($id_calons as $id_calon) {
+            $data = mysqli_query($con, "SELECT * FROM calon_staff WHERE id_calon = '$id_calon' ");
+            while ($staff = mysqli_fetch_assoc($data)) {
           ?>
 
 
               <tr>
-                <td><?= $sepatu['id_alternatif']; ?></td>
-                <td><?= $sepatu['nama_alternatif']; ?></td>
-                <td><?= $sepatu['c1']; ?></td>
-                <td><?= $sepatu['c2']; ?></td>
-                <td><?= $sepatu['c3']; ?></td>
-                <td><?= $sepatu['c4']; ?></td>
+                <td><?= $staff['id_calon']; ?></td>
+                <td><?= $staff['nama_calon']; ?></td>
+                <td><?= $staff['c1']; ?></td>
+                <td><?= $staff['c2']; ?></td>
+                <td><?= $staff['c3']; ?></td>
+                <td><?= $staff['c4']; ?></td>
+                <td><?= $staff['c5']; ?></td>
               </tr>
 
 
@@ -220,12 +226,13 @@ if (!isset($_POST['id_alternatif'])) {
       <div class="table-responsive p-4">
         <table class="table table-striped shadow">
           <tr class="bg-info">
-            <th width="150">Id Alternatif</th>
-            <th>Nama Alternatif</th>
-            <th>Merek (C1)</th>
-            <th>Bahan (C2)</th>
-            <th>Berat (C3)</th>
-            <th>Harga (C4)</th>
+            <th width="150">Id Calon</th>
+            <th>Nama Calon</th>
+            <th>Nilai Psikotes</th>
+            <th>Verifikasi ijazah</th>
+            <th>Interview</th>
+            <th>Pengalaman</th>
+            <th>Keahlian</th>
           </tr>
 
           <?php
@@ -234,23 +241,27 @@ if (!isset($_POST['id_alternatif'])) {
           $pembagi2 = 0;
           $pembagi3 = 0;
           $pembagi4 = 0;
+          $pembagi5 = 0;
 
-          $id_alternatifs = $_POST['id_alternatif'];
-          foreach ($id_alternatifs as $id_alternatif) {
-            $data = mysqli_query($con, "SELECT * FROM alternatif WHERE id_alternatif = '$id_alternatif' ");
-            while ($sepatu = mysqli_fetch_assoc($data)) {
+          $id_calons = $_POST['id_calon'];
+          foreach ($id_calons as $id_calon) {
+            $data = mysqli_query($con, "SELECT * FROM calon_staff WHERE id_calon = '$id_calon' ");
+            while ($staff = mysqli_fetch_assoc($data)) {
 
-              $pembagi1 += pow($sepatu['c1'], 2);
+              $pembagi1 += pow($staff['c1'], 2);
               $akar1 = sqrt($pembagi1);
 
-              $pembagi2 += pow($sepatu['c2'], 2);
+              $pembagi2 += pow($staff['c2'], 2);
               $akar2 = sqrt($pembagi2);
 
-              $pembagi3 += pow($sepatu['c3'], 2);
+              $pembagi3 += pow($staff['c3'], 2);
               $akar3 = sqrt($pembagi3);
 
-              $pembagi4 += pow($sepatu['c4'], 2);
+              $pembagi4 += pow($staff['c4'], 2);
               $akar4 = sqrt($pembagi4);
+
+              $pembagi5 += pow($staff['c5'], 2);
+              $akar5 = sqrt($pembagi5);
             }
           }
 
@@ -259,35 +270,39 @@ if (!isset($_POST['id_alternatif'])) {
 
 
           <?php
-          $id_alternatifs = $_POST['id_alternatif'];
-          foreach ($id_alternatifs as $id_alternatif) {
-            $data = mysqli_query($con, "SELECT * FROM alternatif WHERE id_alternatif = '$id_alternatif' ");
-            while ($sepatu = mysqli_fetch_assoc($data)) {
+          $id_calons = $_POST['id_calon'];
+          foreach ($id_calons as $id_calon) {
+            $data = mysqli_query($con, "SELECT * FROM calon_staff WHERE id_calon = '$id_calon' ");
+            while ($staff = mysqli_fetch_assoc($data)) {
 
           ?>
 
 
               <tr>
-                <td><?= $sepatu['id_alternatif']; ?></td>
-                <td><?= $sepatu['nama_alternatif']; ?></td>
+                <td><?= $staff['id_calon']; ?></td>
+                <td><?= $staff['nama_calon']; ?></td>
                 <!-- -----------C1----------- -->
                 <td>
-                  <?php $c1 = $sepatu['c1'] / $akar1;
+                  <?php $c1 = $staff['c1'] / $akar1;
                   echo round($c1, 4); ?>
                 </td>
                 <!-- -----------C2----------- -->
                 <td>
-                  <?php $c2 = $sepatu['c2'] / $akar2;
+                  <?php $c2 = $staff['c2'] / $akar2;
                   echo round($c2, 4); ?>
                 </td>
                 <!-- -----------C3----------- -->
                 <td>
-                  <?php $c3 = $sepatu['c3'] / $akar3;
+                  <?php $c3 = $staff['c3'] / $akar3;
                   echo round($c3, 4); ?>
                 </td>
                 <!-- -----------C4----------- -->
-                <td><?php $c4 = $sepatu['c4'] / $akar4;
+                <td><?php $c4 = $staff['c4'] / $akar4;
                     echo round($c4, 4); ?>
+                </td>
+                <!-- -----------C5----------- -->
+                <td><?php $c5 = $staff['c5'] / $akar5;
+                    echo round($c5, 4); ?>
                 </td>
               </tr>
 
@@ -312,55 +327,64 @@ if (!isset($_POST['id_alternatif'])) {
       <div class="table-responsive p-4">
         <table class="table table-striped shadow">
           <tr class="bg-info">
-            <th width="150">Id Alternatif</th>
-            <th>Nama Alternatif</th>
-            <th>Merek (C1)</th>
-            <th>Bahan (C2)</th>
-            <th>Berat (C3)</th>
-            <th>Harga (C4)</th>
+            <th width="150">Id Calon</th>
+            <th>Nama Calon</th>
+            <th>Nilai Psikotes</th>
+            <th>Verifikasi ijazah</th>
+            <th>Interview</th>
+            <th>Pengalaman</th>
+            <th>Keahlian</th>
           </tr>
 
           <?php
-          $id_alternatifs = $_POST['id_alternatif'];
-          foreach ($id_alternatifs as $id_alternatif) {
-            $data = mysqli_query($con, "SELECT * FROM alternatif WHERE id_alternatif = '$id_alternatif' ");
-            while ($sepatu = mysqli_fetch_assoc($data)) {
+          $id_calons = $_POST['id_calon'];
+          foreach ($id_calons as $id_calon) {
+            $data = mysqli_query($con, "SELECT * FROM calon_staff WHERE id_calon = '$id_calon' ");
+            while ($staff = mysqli_fetch_assoc($data)) {
 
           ?>
 
               <tr>
-                <td><?= $sepatu['id_alternatif']; ?></td>
-                <td><?= $sepatu['nama_alternatif']; ?></td>
+                <td><?= $staff['id_calon']; ?></td>
+                <td><?= $staff['nama_calon']; ?></td>
                 <!-- -----------C1----------- -->
                 <td>
-                  <?php $c1 = $sepatu['c1'] / $akar1;
-                  $merek1 = $merek['bobot'] * $c1;
-                  // echo $merek['bobot'] . " * " . round($c1, 6) . " = " . round($merek1, 6);
-                  echo round($merek1, 4);
+                  <?php $c1 = $staff['c1'] / $akar1;
+                  $psikotes1 = $psikotes['bobot'] * $c1;
+                  // echo $psikotes['bobot'] . " * " . round($c1, 6) . " = " . round($psikotes1, 6);
+                  echo round($psikotes1, 4);
                   ?>
                 </td>
                 <!-- -----------C2----------- -->
                 <td>
-                  <?php $c2 = $sepatu['c2'] / $akar2;
-                  $bahan1 = $bahan['bobot'] * $c2;
-                  // echo $bahan['bobot'] . " * " . round($c2, 6) . " = " . round($bahan1, 6);
-                  echo round($bahan1, 4);
+                  <?php $c2 = $staff['c2'] / $akar2;
+                  $ijazah1 = $ijazah['bobot'] * $c2;
+                  // echo $ijazah['bobot'] . " * " . round($c2, 6) . " = " . round($ijazah1, 6);
+                  echo round($ijazah1, 4);
                   ?>
                 </td>
                 <!-- -----------C3----------- -->
                 <td>
-                  <?php $c3 = $sepatu['c3'] / $akar3;
-                  $berat1 = $berat['bobot'] * $c3;
-                  // echo $berat['bobot'] . " * " . round($c3, 6) . " = " . round($berat1, 6);
-                  echo round($berat1, 4);
+                  <?php $c3 = $staff['c3'] / $akar3;
+                  $interview1 = $interview['bobot'] * $c3;
+                  // echo $interview['bobot'] . " * " . round($c3, 6) . " = " . round($interview1, 6);
+                  echo round($interview1, 4);
                   ?>
                 </td>
                 <!-- -----------C4----------- -->
                 <td>
-                  <?php $c4 = $sepatu['c4'] / $akar4;
-                  $harga1 = $harga['bobot'] * $c4;
-                  // echo $harga['bobot'] . " * " . round($c4, 6) . " = " . round($harga1, 6);
-                  echo round($harga1, 4);
+                  <?php $c4 = $staff['c4'] / $akar4;
+                  $pengalaman1 = $pengalaman['bobot'] * $c4;
+                  // echo $pengalaman['bobot'] . " * " . round($c4, 6) . " = " . round($pengalaman1, 6);
+                  echo round($pengalaman1, 4);
+                  ?>
+                </td>
+                <!-- -----------C5----------- -->
+                <td>
+                  <?php $c5 = $staff['c5'] / $akar5;
+                  $keahlian1 = $keahlian['bobot'] * $c5;
+                  // echo $keahlian['bobot'] . " * " . round($c4, 6) . " = " . round($keahlian1, 6);
+                  echo round($keahlian1, 4);
                   ?>
                 </td>
               </tr>
@@ -386,63 +410,69 @@ if (!isset($_POST['id_alternatif'])) {
       <div class="table-responsive p-4">
         <table class="table table-striped shadow">
           <tr class="bg-info">
-            <th width="150">Id Alternatif</th>
-            <th>Nama Alternatif</th>
+            <th width="150">Id Calon</th>
+            <th>Nama Calon</th>
             <th>Total</th>
           </tr>
 
 
 
           <?php
-          $id_alternatifs = $_POST['id_alternatif'];
-          foreach ($id_alternatifs as $id_alternatif) {
-            $data = mysqli_query($con, "SELECT * FROM alternatif WHERE id_alternatif = '$id_alternatif' ");
-            while ($sepatu = mysqli_fetch_assoc($data)) {
+          $id_calons = $_POST['id_calon'];
+          foreach ($id_calons as $id_calon) {
+            $data = mysqli_query($con, "SELECT * FROM calon_staff WHERE id_calon = '$id_calon' ");
+            while ($staff = mysqli_fetch_assoc($data)) {
 
           ?>
 
 
-              <?php $sepatu['id_alternatif']; ?>
-              <?php $sepatu['nama_alternatif']; ?>
+              <?php $staff['id_calon']; ?>
+              <?php $staff['nama_calon']; ?>
               <!-- -----------C1----------- -->
 
-              <?php $c1 = $sepatu['c1'] / $akar1;
-              $merek1 = $merek['bobot'] * $c1;
-              // echo $merek['bobot'] . " * " . round($c1, 6) . " = " . round($merek1, 6);
-              round($merek1, 4);
+              <?php $c1 = $staff['c1'] / $akar1;
+              $psikotes1 = $psikotes['bobot'] * $c1;
+              // echo $psikotes['bobot'] . " * " . round($c1, 6) . " = " . round($psikotes1, 6);
+              round($psikotes1, 4);
               ?>
               <!-- -----------C2----------- -->
-              <?php $c2 = $sepatu['c2'] / $akar2;
-              $bahan1 = $bahan['bobot'] * $c2;
-              // echo $bahan['bobot'] . " * " . round($c2, 6) . " = " . round($bahan1, 6);
-              round($bahan1, 4);
+              <?php $c2 = $staff['c2'] / $akar2;
+              $ijazah1 = $ijazah['bobot'] * $c2;
+              // echo $ijazah['bobot'] . " * " . round($c2, 6) . " = " . round($ijazah1, 6);
+              round($ijazah1, 4);
               ?>
               <!-- -----------C3----------- -->
-              <?php $c3 = $sepatu['c3'] / $akar3;
-              $berat1 = $berat['bobot'] * $c3;
-              // echo $berat['bobot'] . " * " . round($c3, 6) . " = " . round($berat1, 6);
-              round($berat1, 4);
+              <?php $c3 = $staff['c3'] / $akar3;
+              $interview1 = $interview['bobot'] * $c3;
+              // echo $interview['bobot'] . " * " . round($c3, 6) . " = " . round($interview1, 6);
+              round($interview1, 4);
               ?>
               <!-- -----------C4----------- -->
-              <?php $c4 = $sepatu['c4'] / $akar4;
-              $harga1 = $harga['bobot'] * $c4;
-              // echo $harga['bobot'] . " * " . round($c4, 6) . " = " . round($harga1, 6);
-              round($harga1, 4);
+              <?php $c4 = $staff['c4'] / $akar4;
+              $pengalaman1 = $pengalaman['bobot'] * $c4;
+              // echo $pengalaman['bobot'] . " * " . round($c4, 6) . " = " . round($pengalaman1, 6);
+              round($pengalaman1, 4);
+              ?>
+              <!-- -----------C4----------- -->
+              <?php $c5 = $staff['c5'] / $akar5;
+              $keahlian1 = $keahlian['bobot'] * $c5;
+              // echo $keahlian['bobot'] . " * " . round($c4, 6) . " = " . round($keahlian1, 6);
+              round($keahlian1, 4);
               ?>
 
               <form action="" method="POST" class="form-group">
                 <tr>
                   <input type="hidden" name="kode" value="<?= $kodebarang; ?>">
                   <!-- --------------ID ALTERNATIF-------------- -->
-                  <input type="hidden" name="id_alternatif[]" value="<?= $sepatu['id_alternatif'] ?>">
-                  <td><?= $sepatu['id_alternatif']; ?></td>
+                  <input type="hidden" name="id_calon[]" value="<?= $staff['id_calon'] ?>">
+                  <td><?= $staff['id_calon']; ?></td>
                   <!-- --------------NAMA ALTERNATIF-------------- -->
-                  <input type="hidden" name="nama_alternatif[]" value="<?= $sepatu['nama_alternatif'] ?>">
-                  <td><?= $sepatu['nama_alternatif']; ?></td>
+                  <input type="hidden" name="nama_calon[]" value="<?= $staff['nama_calon'] ?>">
+                  <td><?= $staff['nama_calon']; ?></td>
                   <!-- --------------TOTAL HASIL-------------- -->
                   <td>
                     <?php
-                    $totalll = $merek1 + $bahan1 + $berat1 - $harga1;
+                    $totalll = $psikotes1 + $ijazah1 + $interview1 + $pengalaman1 + $keahlian1;
                     echo round($totalll, 4);
                     ?>
                     <input type="hidden" name="total_hasil[]" value="<?= round($totalll, 4); ?>">

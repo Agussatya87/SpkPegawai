@@ -59,7 +59,7 @@ function edit_kriteria($data)
 	return mysqli_affected_rows($con);
 }
 
-function tampilsepatu($query)
+function tampilcalon($query)
 {
 
 	global $con;
@@ -72,7 +72,7 @@ function tampilsepatu($query)
 	return $rows;
 }
 
-function tambah_sepatu($data)
+function tambah_calon($data)
 {
 	global $con;
 
@@ -92,7 +92,7 @@ function tambah_sepatu($data)
 
 
 
-function edit_sepatu($data)
+function edit_calon($data)
 {
 	global $con;
 
@@ -119,7 +119,7 @@ function edit_sepatu($data)
 	return mysqli_affected_rows($con);
 }
 
-function hapus_sepatu($id_calon)
+function hapus_calon($id_calon)
 {
 	global $con;
 
@@ -134,8 +134,8 @@ function insert_hasil_perankingan($data)
 	global $con;
 
 	$kode = $data['kode'];
-	$id_alternatif = $data['id_alternatif'];
-	$nama_alternatif = $data['nama_alternatif'];
+	$id_calon = $data['id_calon'];
+	$nama_calon = $data['nama_calon'];
 	$total_hasil = $data['total_hasil'];
 
 	$tanggal = date('d - M - Y | H : i : s');
@@ -151,9 +151,9 @@ function insert_hasil_perankingan($data)
 
 
 
-	for ($x = 0; $x < count($nama_alternatif); $x++) 
+	for ($x = 0; $x < count($nama_calon); $x++) 
 		{
-		$input = mysqli_query($con, "INSERT INTO nilai VALUES('','$kode','$id_alternatif[$x]','$nama_alternatif[$x]','$total_hasil[$x]')");
+		$input = mysqli_query($con, "INSERT INTO nilai VALUES('','$kode','$id_calon[$x]','$nama_calon[$x]','$total_hasil[$x]')");
 		}
 		if ($input) {
 			mysqli_query($con, "INSERT INTO hasil_akhir VALUES('','$kode','$tanggal') ");
@@ -198,14 +198,14 @@ function print_laporan($kode)
         echo '<p>Tanggal: ' . htmlspecialchars($hasil_akhir_row['tanggal']) . '</p>';
         echo '<h3>Detail Nilai:</h3>';
         echo '<table border="1" cellpadding="5" cellspacing="0">';
-        echo '<tr><th>Rank</th><th>ID Alternatif</th><th>Nama Alternatif</th><th>Total Hasil</th></tr>';
+        echo '<tr><th>Rank</th><th>ID Calon</th><th>Nama Calon</th><th>Total Hasil</th></tr>';
 
         $rank = 1; // Inisialisasi variabel rank
         while ($row = mysqli_fetch_assoc($data_nilai)) {
             echo '<tr>';
             echo '<td>' . htmlspecialchars($rank++) . '</td>';
-            echo '<td>' . htmlspecialchars($row['id_alternatif']) . '</td>';
-            echo '<td>' . htmlspecialchars($row['nama_alternatif']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['id_calon']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['nama_calon']) . '</td>';
             echo '<td>' . htmlspecialchars($row['total']) . '</td>';
             echo '</tr>';
         }

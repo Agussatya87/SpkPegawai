@@ -14,11 +14,11 @@ require '../functions.php';
 $id_calon = $_GET['id_calon'];
 
 //TAMPILKAN DATA DIMANA id_alternatif nya ADALAH $id_alternatif
-$data_sepatu = tampilsepatu("SELECT * FROM calon_staff WHERE id_calon = '$id_calon' ")[0];
+$data_sepatu = tampilcalon("SELECT * FROM calon_staff WHERE id_calon = '$id_calon' ")[0];
 
 //JIKA DIKLIK BUTTON EDIT MAKA
 if (isset($_POST['edit'])) {
-  if (edit_sepatu($_POST) > 0) {
+  if (edit_calon($_POST) > 0) {
     echo "<script>
           alert ('Data Berhasil Di Edit')
           document.location.href='data_calon_staff.php'
@@ -133,31 +133,31 @@ if (isset($_POST['edit'])) {
           </tr>
 
           <tr>
-            <td><label>Nilai Psikotes (C1)</label></td>
+            <td><label>Nilai Psikotes</label></td>
             <td> : </td>
             <td width="500"> <input type="text" name="c1" value="<?= $data_sepatu['c1']; ?>" class="form-control" autocomplete="off"></td>
           </tr>
 
           <tr>
-            <td><label>Verifikasi Ijazah (C2)</label></td>
+            <td><label>Verifikasi Ijazah</label></td>
             <td> : </td>
             <td width="500"> <input type="text" name="c2" value="<?= $data_sepatu['c2']; ?>" class="form-control" autocomplete="off"></td>
           </tr>
 
           <tr>
-            <td><label>Interview (C3)</label></td>
+            <td><label>Interview</label></td>
             <td> : </td>
             <td width="500"> <input type="text" name="c3" value="<?= $data_sepatu['c3']; ?>" class="form-control" autocomplete="off"></td>
           </tr>
 
           <tr>
-            <td><label>Pengalaman (C4)</label></td>
+            <td><label>Pengalaman</label></td>
             <td> : </td>
             <td width="500"> <input type="text" name="c4" value="<?= $data_sepatu['c4']; ?>" class="form-control" autocomplete="off"></td>
           </tr>
 
           <tr>
-            <td><label>Keahlian (C5)</label></td>
+            <td><label>Keahlian</label></td>
             <td> : </td>
             <td width="500"> <input type="text" name="c5" value="<?= $data_sepatu['c5']; ?>" class="form-control" autocomplete="off"></td>
           </tr>

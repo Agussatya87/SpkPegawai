@@ -6,7 +6,7 @@ require '../functions.php';
 $id_calon = $_GET['id_calon'];
 
 //JALANKAN FUNGSI HAPUS
-if (hapus_sepatu($id_calon)) {
+if (hapus_calon($id_calon)) {
     echo "<script>
           alert ('Data Berhasil Di Hapus')
           document.location.href='data_calon_staff.php'

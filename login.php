@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require 'functions.php';
 
 if (isset($_POST['login'])) {
@@ -8,127 +7,153 @@ if (isset($_POST['login'])) {
   $password = $_POST['password'];
 
   if (login($_POST) > 0) {
-    $login = mysqli_query($con, "SELECT * FROM login WHERE username = '$username' AND password = '$password' ");
+    $login = mysqli_query($con, "SELECT * FROM login WHERE username = '$username' AND password = '$password'");
     $user = mysqli_fetch_assoc($login);
 
     if ($user['level'] == 'admin') {
       $_SESSION['status'] = "log_in";
-      echo "<script>
-	 				alert('Selamat Datang Admin')
-           document.location.href='admin/index.php'
-	 			</script>";
+      echo "<script>alert('Selamat Datang Admin'); document.location.href='admin/index.php';</script>";
     } else if ($user['level'] == 'user') {
       $_SESSION['status'] = "log_in";
-      echo "<script>
-	 				alert('Selamat Datang User')
-           document.location.href='konsumen/index.php'
-	 			</script>";
+      echo "<script>alert('Selamat Datang User'); document.location.href='konsumen/index.php';</script>";
     }
   } else {
-    echo "<script>
-          document.location.href='login.php?pesan=username/passwordsalah'
-        </script>";
+    echo "<script>document.location.href='login.php?pesan=username/passwordsalah';</script>";
   }
 }
-
-
-
 ?>
 
 <!doctype html>
 <html lang="en">
-
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     body {
-      color: white;
-      background-image: url(img/gmd.jpg);
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: url('img/your-background.jpg') no-repeat center center fixed;
       background-size: cover;
     }
 
-
-    .col-md-3 h1 {
-      padding: 10px;
-      text-transform: uppercase;
+    .login-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px); /* Safari */
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;  /* Container will now take up 100% width up to max-width */
+      box-sizing: border-box; /* Ensure padding doesn't affect the width */
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
-    .panel {
-      text-align: left;
-      padding: 10px;
+    .login-header {
+      margin-bottom: 30px;
+      text-align: center;
     }
 
+    .login-header h1 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #333;
+    }
 
-    .col-md-3 {
-      text-align: left;
+    .form-control {
+      border-radius: 50px;
+      padding: 15px;
+      font-size: 16px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border: 1px solid #ccc;
+      width: 100%; /* Ensure input fields fill the width of the container */
+      box-sizing: border-box; /* Ensure padding doesn't overflow the width */
+    }
+
+    .btn-custom {
+      background-color: #1e90ff;
+      color: #fff;
+      border-radius: 50px;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      width: 100%; /* Ensure the button also fills the container width */
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: #007bff;
+    }
+
+    .alert {
+      font-size: 14px;
+      width: 100%; /* Ensure alert width matches container */
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      width: 100%; /* Make form group 100% width */
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .form-footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .form-footer a:hover {
+      text-decoration: underline;
     }
   </style>
 
-  <title>login</title>
+  <title>Login</title>
 </head>
 
-<body bgcolor="grey">
+<body>
 
-  <center>
-    <br><br><br><br><br>
+  <div class="login-container">
+    <div class="login-header">
+      <h1>Sign In</h1>
+    </div>
 
-    <div class="col-md-3" style="padding: 10px; ">
-      <?php
-      if (isset($_GET['pesan'])) {
+    <!-- Pesan Error -->
+    <?php if (isset($_GET['pesan'])): ?>
+      <?php if ($_GET['pesan'] == "username/passwordsalah"): ?>
+        <div class="alert alert-danger">Username atau password salah!</div>
+      <?php elseif ($_GET['pesan'] == "logoutberhasil"): ?>
+        <div class="alert alert-info">Logout berhasil!</div>
+      <?php elseif ($_GET['pesan'] == "logindahulu"): ?>
+        <div class="alert alert-warning">Anda harus login terlebih dahulu!</div>
+      <?php endif; ?>
+    <?php endif; ?>
 
-        if ($_GET['pesan'] == "username/passwordsalah") {
-          echo "<div class='alert alert-danger'>Gagal! Username/Password Salah</div>";
-        } else if ($_GET['pesan'] == "logoutberhasil") {
-          echo "<div class='alert alert-info'>Logout Berhasil</div>";
-        } else if ($_GET['pesan'] == "logindahulu") {
-          echo "<div class='alert alert-warning'>Anda harus Login Dahulu</div>";
-        }
-      }
-      ?>
-
-
-      <div class="col-md-13 bg-info">
-        <center>
-          <h1>Sign In</h1>
-        </center>
+    <!-- Form Login -->
+    <form method="post">
+      <div class="form-group">
+        <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
       </div>
+      <div class="form-group">
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+      </div>
+      <button type="submit" name="login" class="btn btn-custom">Log In</button>
+    </form>
 
-    </div>
-    <div class="col-md-3 bg-light">
-      <form method="post">
-        <div class="panel">
-          <div class="panel-body">
-            <div class="form-group">
-              <input type="text" name="username" placeholder="Username" autocomplete="off" required autofocus class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" name="password" placeholder="password" autocomplete="off" required class="form-control">
-            </div>
-            <div class="form-group">
-              <center><button type="submit" name="login" class="btn btn-info" style="width: 100%;">Log In</button></center>
-              <hr>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-  </center>
-
-
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/   reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//   I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

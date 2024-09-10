@@ -23,7 +23,7 @@ if (!isset($_SESSION['status'])) {
 
   <style>
     body {
-      background-image: url(../img/galeri/8.JPG);
+      background-image: url(../img/galeri/efarina2.jpg);
       background-size: cover;
     }
 
@@ -36,6 +36,11 @@ if (!isset($_SESSION['status'])) {
       min-height: calc(100vh - 211px - -60px);
     }
 
+    .transparent-container {
+      background-color: rgba(255, 255, 255, 0.7); 
+      border-radius: 0.25rem; 
+      padding: 20px;
+    }
 
     .col-md-12 {
       padding: 8px;
@@ -48,12 +53,18 @@ if (!isset($_SESSION['status'])) {
     }
 
     a font {
-      color: whitesmoke;
+      color: #000;
+    }
+
+    
+    .navbar-nav a {
+      margin-right: 20px;
     }
 
     .navbar-nav a:hover {
       color: darkblue;
-
+      background-color: lightblue; 
+      border-radius: 5px; 
     }
 
     @media (max-width: 1000px) {
@@ -69,111 +80,44 @@ if (!isset($_SESSION['status'])) {
 <body bgcolor="f0f0f0">
   <form method="post" action="perhitungan.php">
     <nav class="navbar navbar-expand-lg navbar-dark bg-light">
-      <a class="navbar-brand" href="#"><img src="../img/gmd.png" width="50"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav" style="margin: 10px;">
-          <a class="nav-link active" href="index.php">
-            <font size="4"><b>Home</b> </font><span class="sr-only">(current)</span>
-          </a>
-          <a class="nav-link" href="data_calon_staff.php">
-            <font size="4"><b>Data Calon</b></font>
-          </a>
-          <a class="nav-link" href="laporan.php">
-            <font size="4"><b>laporan</b></font>
-          </a>
-          <a class="nav-link" href="tentang.php">
-            <font size="4"><b>Tentang</b></font>
-          </a>
-          <!-- membuat tobol logout menjadi lebih ke kanan dan bisa menyesuaikan di mobile juga. 1&nbsp = 1x spasi -->
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a class="log nav-link" href="../logout.php">
-            <font size="4"><b>Logout</b></font>
-            <img src="../img/logout.png" width="30">
-          </a>
-        </div>
+    <a class="navbar-brand" href="#"><img src="../img/logo.png" width="50"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" href="index.php">
+          <font size="4"><b>Home</b></font><span class="sr-only">(current)</span>
+        </a>
+        <a class="nav-link" href="data_calon_staff.php">
+          <font size="4"><b>Data Calon</b></font>
+        </a>
+        <a class="nav-link" href="laporan.php">
+          <font size="4"><b>Laporan</b></font>
+        </a>
       </div>
-    </nav>
+      <a class="nav-link log" href="../logout.php">
+        <font size="4"><b>Logout</b></font>
+        <img src="../img/logout_new.png" width="30">
+      </a>
+    </div>
+  </nav>
   </form>
 
   <br>
-  <div class="container bg-light shadow p-3 mb-5">
+  <div class="container p-3 mb-5 shadow transparent-container">
     <div class="alert alert-info">
-      <center><b>SELAMAT DATANG KONSUMEN</b></center>
+      <center><b>SELAMAT DATANG HRD</b></center>
     </div>
     <center>
-      <font size="5" class="judul"><b>Implementasi Metode MOORA dalam Sistem Pendukung Keputusan Pemilihan Sepatu Sport Terbaik”</b></font>
+      <font size="5" class="judul"><b>SISTEM PENDUKUNG KEPUTUSAN PENERIMAAN STAFF BARU DI RUMAH SAKIT EFARINA ETAHAM PEMATANGSIANTAR</b></font>
     </center>
-
     <br><br>
-
-    <center>
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="../img/galeri/4.JPG" width="300" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="../img/galeri/2.JPG" width="300" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="../img/galeri/3.JPG" width="300" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item ">
-            <img src="../img/galeri/1.JPG" width="300" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="../img/galeri/5.JPG" width="300" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="../img/galeri/6.JPG" width="300" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="../img/galeri/7.JPG" width="300" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item ">
-            <img src="../img/galeri/9.JPG" width="300" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="../img/galeri/10.JPG" width="300" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="../img/galeri/11.JPG" width="300" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="../img/galeri/12.JPG" width="300" class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </center>
-
-    <br>
-  </div>
+    </div>
 
   <div class="col-md-12 bg-light">
     <div class="copyright">
-      <h5>Copyright&copy; Kasep-Code 2023</h5>
+      <h6 style = "color:#000;" >Copyright&copy; Fanny Khaliza</h6>
     </div>
 </div>
 

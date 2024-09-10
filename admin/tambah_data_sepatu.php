@@ -11,8 +11,8 @@ require '../functions.php';
 
 //JIKA TOMBOL SIMPAN DITEKAN MAKA JALANKAN
 if (isset($_POST['simpan'])) {
-  //JIKA function tambah_sepatu > 0 (sukses) MAKA JALANKAN FUNGSI
-  if (tambah_sepatu($_POST) > 0) {
+  //JIKA function tambah_calon > 0 (sukses) MAKA JALANKAN FUNGSI
+  if (tambah_calon($_POST) > 0) {
     //DAN TAMPILKAN POP UP "DATA BERHASIL DI TAMBAH DAN LEMPAR KE HALAMAN data_calon_staff.php"
     echo "<script>
           alert ('Data Berhasil Di Tambah')
@@ -72,7 +72,7 @@ if (isset($_POST['simpan'])) {
 
   </style>
 
-  <title>TAMBAH DATA SEPATU</title>
+  <title>TAMBAH DATA CALON STAFF</title>
 
  
   <script>
@@ -168,31 +168,31 @@ if (isset($_POST['simpan'])) {
             </tr>
 
             <tr>
-              <td><label>Nilai Psikotes (C1)</label></td>
+              <td><label>Nilai Psikotes</label></td>
               <td> : </td>
               <td width="500"> <input type="text" name="c1" class="form-control" autocomplete="off"></td>
             </tr>
 
             <tr>
-              <td><label>Verifikasi Ijazah (C2)</label></td>
+              <td><label>Verifikasi Ijazah</label></td>
               <td> : </td>
               <td width="500"> <input type="text" name="c2" class="form-control" autocomplete="off"></td>
             </tr>
 
             <tr>
-              <td><label>Interview (C3)</label></td>
+              <td><label>Interview</label></td>
               <td> : </td>
               <td width="500"> <input type="text" name="c3" class="form-control" autocomplete="off"></td>
             </tr>
 
             <tr>
-              <td><label>Pengalaman (C4)</label></td>
+              <td><label>Pengalaman</label></td>
               <td> : </td>
               <td width="500"> <input type="text" name="c4" class="form-control" autocomplete="off"></td>
             </tr>
 
             <tr>
-              <td><label>Keahlian (C5)</label></td>
+              <td><label>Keahlian</label></td>
               <td> : </td>
               <td width="500"> <input type="text" name="c5" class="form-control" autocomplete="off"></td>
             </tr>

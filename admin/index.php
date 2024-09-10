@@ -41,9 +41,9 @@ if (!isset($_SESSION['status'])) {
     }
 
     .transparent-container {
-      background-color: rgba(255, 255, 255, 0.7); /* Warna putih dengan transparansi 70% */
-      border-radius: 0.25rem; /* Tambahkan border-radius jika ingin sudut melengkung */
-      padding: 20px; /* Sesuaikan padding agar konten tetap rapi */
+      background-color: rgba(255, 255, 255, 0.7); /
+      border-radius: 0.25rem; 
+      padding: 20px;
     }
 
     .col-md-12 {

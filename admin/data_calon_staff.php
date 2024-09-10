@@ -9,7 +9,7 @@ if (!isset($_SESSION['status'])) {
 require '../functions.php';
 
 //MEMBUKA SEMUA DATA YG ADA DI TABLE ALTERNATIF
-$data_sepatu = tampilsepatu("SELECT * FROM calon_staff");
+$data_sepatu = tampilcalon("SELECT * FROM calon_staff");
 
 //MEMBUKU KEMBALI UNTUK MEMBACA TOTAL DATA YANG ADA
 $data_sepatu1 = mysqli_query($con, "SELECT * FROM calon_staff");
@@ -18,7 +18,7 @@ $data_sepatu1 = mysqli_query($con, "SELECT * FROM calon_staff");
 if (isset($_POST['cari'])) {
   $input = $_POST['input'];
   //TAMPILKAN DATA YANG DI INPUTKAN 
-  $data_sepatu = tampilsepatu("SELECT * FROM calon_staff WHERE nama_calon LIKE '%$input%' OR id_calon LIKE '%$input%' ");
+  $data_sepatu = tampilcalon("SELECT * FROM calon_staff WHERE nama_calon LIKE '%$input%' OR id_calon LIKE '%$input%' ");
 }
 
 
@@ -169,11 +169,11 @@ if (isset($_POST['cari'])) {
         </th>
         <th>Id Calon Staff</th>
         <th>Nama Calon Staff</th>
-        <th>Nilai Psikotes (C1)</th>
-        <th>Verifikasi Ijazah (C2)</th>
-        <th>Interview (C3)</th>
-        <th>Pengalaman (C4)</th>
-        <th>Keahlian (C5)</th>
+        <th>Nilai Psikotes</th>
+        <th>Verifikasi Ijazah</th>
+        <th>Interview</th>
+        <th>Pengalaman</th>
+        <th>Keahlian</th>
         <th>Aksi</th>
       </tr>
 

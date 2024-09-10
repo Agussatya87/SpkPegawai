@@ -130,8 +130,8 @@ $data = query("SELECT * FROM nilai WHERE kode_hasil = '$kode' ORDER BY total DES
         <?php foreach ($data as $detail_data) { ?>
           <tr>
             <td><?= $detail_data['kode_hasil']; ?></td>
-            <td><?= $detail_data['id_alternatif']; ?></td>
-            <td><?= $detail_data['nama_alternatif']; ?></td>
+            <td><?= $detail_data['id_calon']; ?></td>
+            <td><?= $detail_data['nama_calon']; ?></td>
             <td><?= $detail_data['total']; ?></td>
             <td><?= $i++ ?></td>
           </tr>
