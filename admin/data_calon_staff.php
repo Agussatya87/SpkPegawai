@@ -133,7 +133,7 @@ if (isset($_POST['cari'])) {
 
   </div>
   <br>
-  <a href="tambah_data_sepatu.php" class="btn btn-success">Tambah Data</a>
+  <a href="tambah_data_calon.php" class="btn btn-success">Tambah Data</a>
   <br><br>
   <div class="hitung">
     <button type="submit" name="perhitungan" class="btn btn-light" style=" margin-top: -10px;"><b>hitung</b></button>
