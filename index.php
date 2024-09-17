@@ -116,6 +116,13 @@ if (isset($_POST['login'])) {
       text-decoration: none;
     }
 
+    .login-logo {
+      width: 100px; /* Sesuaikan ukuran logo */
+      height: auto;
+      margin-bottom: 5px; /* Beri jarak antara logo dan teks */
+    }
+
+
     .form-footer a:hover {
       text-decoration: underline;
     }
@@ -128,7 +135,7 @@ if (isset($_POST['login'])) {
 
   <div class="login-container">
     <div class="login-header">
-      <h1>Sign In</h1>
+    <img src="img/logo.png" alt="Logo" class="login-logo">
     </div>
 
     <!-- Pesan Error -->
@@ -150,7 +157,7 @@ if (isset($_POST['login'])) {
       <div class="form-group">
         <input type="password" name="password" class="form-control" placeholder="Password" required>
       </div>
-      <button type="submit" name="login" class="btn btn-custom">Log In</button>
+      <button type="submit" name="login" class="btn btn-custom">Login</button>
     </form>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
